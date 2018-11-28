@@ -1,0 +1,38 @@
+{
+  "name": "miniproject",
+  "version": "0.0.1",
+  "description": "a hackernews like site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "author": "FikraSpace",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^3.5.1",
+    "@opuscapita/react-dates": "^0.5.6",
+    "@progress/kendo-dateinputs-react-wrapper": "^2018.3.1017",
+    "@progress/kendo-theme-default": "^2.61.0",
+    "bootstrap": "^4.1.3",
+    "evergreen-ui": "^4.7.1",
+    "firebase": "^5.5.9",
+    "fs": "0.0.1-security",
+    "jspdf": "^1.4.1",
+    "pdfjs": "^2.1.0",
+    "pdfkit": "^0.8.3",
+    "react": "^16.6.3",
+    "react-datepicker": "^2.0.0",
+    "react-dates": "^18.2.2",
+    "react-dom": "^16.6.3",
+    "react-lib-datepicker": "0.0.3",
+    "react-time-picker": "^3.1.1",
+    "reactstrap": "^6.5.0",
+    "styled-components": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
