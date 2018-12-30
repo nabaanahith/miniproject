@@ -99,7 +99,7 @@ return <div>
     <div id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<div class="col-md-2 first-item tty">
                                     <fieldset>
-										<input name="name" type="text" class="form-control" id="name" placeholder="user name..." 
+										<input name="email" type="text" class="form-control" id="name" placeholder="user name..." 
 										required=""   
 										onChange={(event)=>{ctx.actions.onChangeemail(event.target.value)}} 
                   placeholder="user name..." type="text"/>
@@ -107,7 +107,7 @@ return <div>
                                 </div>
 								<div class="col-md-2 first-item tty" >
                                     <fieldset>
-										<input name="name" type="text" class="form-control" id="name" placeholder="password"
+										<input name="password" type="text" class="form-control" id="name" placeholder="password"
 										 required=""onChange={(event)=>{ctx.actions.onChangeepassword(event.target.value)}} />
                                     </fieldset>
                                 </div>
@@ -416,7 +416,7 @@ class Prescriptions extends React.Component {
 				  <div class="price-bottom">
 				
 				   
-					  <a href={`http://localhost:7000/${item.pdf}`} class="btn btn-skin btn-sm" onClick={()=>{
+					  <a   href={`http://localhost:7000/${item.pdf}`} class="btn btn-skin btn-sm" onClick={()=>{
 					  }}
 					
 					>download</a>

@@ -114,7 +114,7 @@ function validationSchema(result) {
   return joi.validate(result, schema);
 }
 
-port =  7000;
+port =  process.env.PORT || 7000;
 app.listen(port, () =>
   console.log(`the server connect on http://localhost:${port}`)
 );

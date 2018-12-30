@@ -98,18 +98,19 @@ router.get('/regester/:email/:password',(req,res)=>{
               });
               
           
-       
-          userscema.createUser(newuser,(err,user)=>{
-              if(err) throw err
-              console.log(user);
+          newuser.save().then(result=>{
+            console.log("result",result);
+          res.status(201).json([{messg:'done'}])
+          
+          
+          }).catch(err=>{
+              console.log("err",err);
               
-
-
-
+            res.status(404).json([{messg:err}])
+          
+          
           })
-          console.log('reg seccessful');
-          res.send('reg seccessful')
-   
+          
           }
           } 
           )
@@ -121,8 +122,8 @@ router.get('/regester/:email/:password',(req,res)=>{
       
           })
       })
-   
-      
+    
+      //#3fbbc0
 router.get('/checklogin',checkauth,(req,res)=>{
     /*const token=req.headers.token;
     if(token){
