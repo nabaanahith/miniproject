@@ -1,0 +1,4 @@
+PATH=%PATH%;c:\windows\system32
+ npm install --save react-navigation@1.0.0-beta.11
+
+

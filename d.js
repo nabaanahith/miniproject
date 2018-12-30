@@ -1,23 +1,12 @@
-
-var pdf=require('pdfkit');
-var fs=require('fs');
-let peo=[
-
-
-    {name:'iii'}
-];
-let i=1000;
-peo.forEach((p)=>{
-
-i++;
-let doc=new pdf();
-doc.pipe(fs.createWriteStream(`pdffc\${i}-${p.name}.pdf`));
-
-doc.text(`id: ${i}\nname :${p.name}`,100,100);
-doc.end();
-
-
-
-
+function createNewProfile(profile) {
+    const formData = new FormData();//scema
+    formData.append('first_name', profile.firstName);
+    formData.append('last_name', profile.lastName);
+    formData.append('email', profile.email);
+    return fetch('http://example.com/api/v1/registration', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
 }
-)
+module.exports=createNewProfile;

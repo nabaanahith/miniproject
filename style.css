@@ -28,9 +28,17 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 body{
-	background: url('./images/bg.jpg') 0px 0px no-repeat;
-	font-family: 'Open Sans', sans-serif;
-	background-size:cover;
+	width:30%;
+	margin:2% auto;
+	
+	background: hsla(0, 5.3%, 73.9%, 0.5);
+	padding:1em 2em;
+
+}
+.email
+{
+margin-top:1%;
+
 }
 body a {
 	transition: 0.5s all;
@@ -249,6 +257,10 @@ color:#000 !important;
 	background: url('./images/date-icon.png') no-repeat 95.5% 45% #fff;
 	cursor: pointer;
 	padding: 8px 0;
+}
+.first-item{
+
+	padding:3px;
 }
 
 .book-pag-frm1 {

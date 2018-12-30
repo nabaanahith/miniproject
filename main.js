@@ -1,13 +1,17 @@
-
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import Popup from "reactjs-popup";
 import firebase from 'firebase';
 import styled from 'styled-components'
+
 import { Button, Autocomplete, TextInput } from 'evergreen-ui'
-
+const axios=require('axios')
 import Context from './context';
+const mongoses =require('mongoose')
+import { RSA_SSLV23_PADDING } from 'constants';
 
 
+let Img = require('react-image')
 var config = {
     apiKey: "AIzaSyDiEdheYYptR8jqM1skd1JWLF_fIoqmIp8",
     authDomain: "fikrajob-c5adb.firebaseapp.com",
@@ -17,99 +21,96 @@ var config = {
     messagingSenderId: "638394804035"
 };
 firebase.initializeApp(config);
-
-class Prescriptions extends React.Component {
-	constructor() {
-	  super()
-	}
-	render() {
-	  return (
-		<Context.Consumer>
-		  {
-			
-			(ctx) => {
-			return <div>
-			  {
-				ctx.state.drug.map((item, i) => {
-				  return <div key={i}>
-				  <div class="col-sm-4 pricing-box">
-				  <div class="wow bounceInUp" data-wow-delay="0.2s">
-				  <div class="pricing-content general last">
-				  <h2>Dr.{item.named}</h2>
-				  <h3><span>Pationt Name :  {item.namep} </span><br/>
-				  <span> Address :  {item.adress}</span>
-				  
-				  <br/>
-				  <span> Age :  {item.age}</span></h3>
-				  <div class="divider-short"></div>
-				  <ul>
-				 
-				  <li>Dtugs :  {item.drag} <i class="fa fa-check icon-success"></i></li>
-				  <li>Notes :  {item.notes}<i class="fa fa-check icon-success"></i></li>
-				
-				  </ul>
-				  
-				  <div class="price-bottom">
-				  <a href="#" class="btn btn-skin btn-lg"  onClick={()=>{
-					  var prtContent = document.getElementById('print');
-					  var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-					  WinPrint.document.write(prtContent.innerHTML);
-					  WinPrint.document.close();
-					  WinPrint.focus();
-					  WinPrint.print();
-					  WinPrint.close();
-
-				  }}
-				  >Print</a>
-				  </div>
-				  </div>
-				  </div>
-				  </div>
-				  
-				  </div>
-				})
-			  }
-			</div>
+function Input() {
 
 
-		  }}
-		</Context.Consumer>
-	  )
-	}
+    return <div>
+        <Context.Consumer>
+            {
+                (ctx) => {
+                    // console.log("ctx.state.drug",ctx.state.drug)
+                    let d = []
+                    d = ctx.state.books
+                    console.log("ctx.state.drug", d)
+                    return (
+                        <Autocomplete
+                            title="books"
+                            onChange={(changedItem) =>ctx.actions.changedItm(changedItem)}
+                            items={d}
+                        >
 
+                            {(props) => {
+                                const { getInputProps, getRef, inputValue } = props
+                                console.log("getRef: ",getRef,"inputValue: ",inputValue,"getInputProps",getInputProps,"props")
+                                return (
+                                    <TextInput
+                                        placeholder=""
+                                    
+                                        value={inputValue}
+                                        innerRef={getRef}
+                                        {...getInputProps()}
+                                    />
+                                )
+
+                            }
+                            }
+
+
+                        </Autocomplete>
+
+                    )
+                }
+            }
+        </Context.Consumer>
+
+    </div>
+	
 }
+class Bb extends React.Component{
 
 
-class Body extends Component{
-
-
-	constructor() {
-		super()
-		this.state = {
-			drug: [{}],
-		
-		}
-	
-		firebase.firestore().collection('prescription').onSnapshot((snapshot)=>{
-		  let pes = []
-	
-		  snapshot.forEach((doc)=>{
-			pes.push(doc.data())
-			this.setState({
-			  drug: pes
+		componentDidMount() {
+			// fetch data and update state
+			fetch('http://localhost:5000/api/user/adduser')
+			.then(response =>response.json()).then(data=>{console.log(data);
+			}
+			).catch(err=>{
+				console.log(err);
+				
 			})
-		  })
-		})
+		 }
+		
 	
-	  }
 	
-	  render() {
-		return (
-		  <Context.Provider value={{
-			state: this.state}}>
-    <div>
-    <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+render(){
+	
+return(
 
+	<Context.Consumer>
+{
+		(ctx)=>{
+return <div>
+
+  
+
+<div>
+
+
+    <div id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	<div class="col-md-2 first-item tty">
+                                    <fieldset>
+										<input name="name" type="text" class="form-control" id="name" placeholder="user name..." 
+										required=""   
+										onChange={(event)=>{ctx.actions.onChangeemail(event.target.value)}} 
+                  placeholder="user name..." type="text"/>
+                                    </fieldset>
+                                </div>
+								<div class="col-md-2 first-item tty" >
+                                    <fieldset>
+										<input name="name" type="text" class="form-control" id="name" placeholder="password"
+										 required=""onChange={(event)=>{ctx.actions.onChangeepassword(event.target.value)}} />
+                                    </fieldset>
+                                </div>
 
 <div id="wrapper">
 	
@@ -118,7 +119,7 @@ class Body extends Component{
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6 col-md-6">
-					<p class="bold text-left">Monday - Saturday, 8am to 10pm </p>
+					<p class="bold text-left"></p>
 					</div>
 					<div class="col-sm-6 col-md-6">
 					<p class="bold text-right">Call us now +964 123 456 789</p>
@@ -142,7 +143,7 @@ class Body extends Component{
 			  <ul class="nav navbar-nav">
 				<li class="active"><a href="#intro">Home</a></li>
 				<li><a href="#service">Service</a></li>
-				<li><a href="#doctor">Doctors</a></li>
+				
 				<li><a href="#facilities">Facilities</a></li>
 				<li><a href="#pricing">Pricing</a></li>
 				<li class="dropdown">
@@ -155,23 +156,50 @@ class Body extends Component{
         
     </nav>
 </div>
-</body>
+</div>
   <section id="intro" class="intro">
+ 
   <div class="intro-content">
       <div class="container text-center">
-          <div class="row">
+          <div class="row " id="mar">
               <div class="col-lg-12">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
-              <h2 class="h-ultra">Fikra Clinic</h2>
+              <h2 class="h-ultra text">SELF-PUBLISHING</h2>
               </div>
-              <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
-              <h4 class="h-light">Provide best quality healthcare for you</h4>
+              <div class="wow fadeInUp " data-wow-offset="0" data-wow-delay="0.1s">
+              <h4 class="h-light text">CAN BE YOUR PATHWAY TO SUCCESS!</h4>
               </div>
-              <div id="btnn">
-              <a href="./main.html" class="btn btn-skin btn-lg " id="mm">Create Prescription </a>
+	
+			  <div class="row">
+
+			  <a href="#" class=" col-md-3 btn btn-skin btn-lg ii"//felds
+		 onClick={()=>{
+			fetch(`http://localhost:2000/api/user/login/${ctx.state.email}/${ctx.state.password}/`)
+			.then(ress=>ress.json())
+		.then(da=>{console.log("da",da.message);
+	   },
+	   
+	   console.log("ctx.state.email",ctx.state.email)
+	  
+	   ).catch(err=>{console.log(err)})
+	   
 
 
-<a href="#hstory" class="btn btn-skin btn-lg">View Prescriptions </a>
+	   }} >Login </a>
+			  <a href="#" class=" col-md-3 btn btn-skin btn-lg " 
+			 	   onClick={()=>{
+					fetch(`http://localhost:2000/api/user/regester/${ctx.state.email}/${ctx.state.password}/`)
+					.then(ress=>ress.json())
+				.then(da=>{console.log("da",da.message);
+			   },
+			   
+			   console.log("ctx.state.email",ctx.state.email)
+			  
+			   ).catch(err=>{console.log(err)})
+			   
+ 
+ 
+			   }}>Register </a>
 </div>
               </div>
               <div class="col-lg-6">
@@ -191,14 +219,20 @@ class Body extends Component{
 
 
 
-<section id="pricing" class="home-section bg-gray paddingbot-60">	
+<section id="pricing" class="home-section bg-gray paddingbot-60">
+<div>
+                                  
+                                </div>
+								<a href="http://localhost:7000/" class="btn btn-skin btn-lg " id="mm">Add Book </a>
+
+
 		<div class="container marginbot-50">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow lightSpeedIn" data-wow-delay="0.1s">
 					<div class="section-heading  ">
 				
-					<h1 id="hstory">History Of Prescription</h1>
+					<h1 id="hstory">avalible books</h1>
 					</div>
 					</div>
 					<div class="divider-short"></div>
@@ -320,6 +354,210 @@ class Body extends Component{
 	</footer>
     <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+		}
+	}
+	</Context.Consumer>
+)
+
+
+}
+
+
+
+}
+
+class Prescriptions extends React.Component {
+	constructor() {
+	  super()
+	}
+	render() {
+	  return (
+		<Context.Consumer>
+		  {
+			
+			(ctx) => {
+				
+			return <div>
+			  {
+
+	
+	 
+				ctx.state.books.map((item, i) => {
+					
+					if(i>0){
+				  return <div id={i} key={i}>
+				  <div class="col-sm-4 pricing-box">
+				  <div class="wow bounceInUp" data-wow-delay="0.2s">
+				  <div class="pricing-content general last">
+				  <h2>name : {item.author}</h2>
+				  <img width="100%;" src={`http://localhost:7000/${item.img}`}/>
+				  <h3><span>auther :  {item.author} </span><br/>
+				  <span> publishAt :  {item.publishAt}</span>
+				</h3>
+				  <div class="divider-short"></div>
+				  <ul>
+				  <li>describtion :  {item.description} <i class="fa fa-check icon-success"></i></li>
+				  </ul>
+				  
+				  <div class="price-bottom">
+				
+				   
+					  <a href={`http://localhost:7000/${item.pdf}`} class="btn btn-skin btn-sm" onClick={()=>{
+					  }}
+					
+					>download</a>
+				  </div>
+				  </div>
+				  </div>
+				  </div>
+				  
+				  </div>
+					}
+				})
+			  }
+			</div>
+
+
+		  }}
+		</Context.Consumer>
+	  )
+	}
+
+}
+
+
+class Body extends Component{
+	
+
+	constructor() {
+		let redm =[]	
+		fetch('http://localhost:7000/book')
+		.then(response =>response.json()).then(result=>{console.log("result",result);
+	
+	console.log("data of user is",result);
+	let redm = result
+	window.tt=redm
+	redm.forEach(element => {
+		window.ele=element
+		
+		
+	//	v.push(element.volumeInfo.title)
+	this.state.books.push(element)
+
+
+	});
+
+	let stringArray = this.state.books
+	this.setState({
+		books: stringArray
+
+	})
+	window.s = this.state.books;
+	console.log('stringArraylen', stringArray.length)
+	console.log('stringArray', stringArray)
+
+	
+	}).catch(err=>{
+	
+		console.log("err on feting request",err);
+		
+	})
+
+		super()
+		this.state = {
+			books:[{}],
+			drg: [{}],
+			email:'',
+			password:'',
+			toggle:0,
+			title:'',
+			auther:'',
+			publishdate:'',
+			img:'',
+		
+		}
+	
+		firebase.firestore().collection('prescription').onSnapshot((snapshot)=>{
+		  let pes = []
+	
+		  snapshot.forEach((doc)=>{
+			pes.push(doc.data())
+			this.setState({
+			  drg: pes
+			})
+		  })
+		})
+	
+	  }
+		/*super()
+		this.state = {
+			email:'',
+			password:''
+
+		
+		}
+	
+	
+	  }*/
+	
+ 	
+	  render() {
+		return (
+		  <Context.Provider value={{
+			state: this.state,
+			
+			
+			actions:{
+		
+				onChangeemail:(event)=>{
+					console.log(event);
+					
+					this.setState({
+						email: event
+					})
+
+
+				},
+				changedItm:(event)=>{
+					console.log(event);
+					
+					this.setState({
+						books: event
+					})
+
+
+				},
+				onChangeepassword:(event)=>{
+					console.log(this.state.email);
+					
+					this.setState({
+						password: event
+					})
+
+
+				},
+			
+						}
+					
+			
+			
+			}}>
+			<Bb/>
+    
 
 </Context.Provider>
 )

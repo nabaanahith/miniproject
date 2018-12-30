@@ -46,110 +46,39 @@ class Header extends React.Component {
                         return (
                             <div>
                                 <div className="containerw3layouts-agileits">
-                                    <div className="w3layoutscontactagileits">
-                                        <div id="wrapper">
-                                            <form action="#" method="post">
-                                                <div id="login" className="animate w3layouts agileits form">
-                                                    <div className="ferry ferry-from">
-                                                        <label>Doctor Name :</label>
-                                                        <Textinput value={ctx.state.name1} 
-                  onChange={(event)=>{ctx.actions.onChangenamed(event.target.value)}} 
-                  placeholder="" type="text"/>
-                                                    </div>
-                                                    <div className="ferry ferry-from">
+                              
+   <form action="/" enctype="multipart/form-data" method="post">
+        <input type="file" name="pdf" />
+        <input type="file" name="img" />
+     
+     
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="bookname"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="author"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="year"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="pages"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="language"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="fileSize"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="fileFormat"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="img"/>
+          <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="description"/>
+          <input type="text" class="form-control  email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="category"/>
 
-                                                        <label>paitiont Name :</label>
-                                                        <Textinput 
-                  onChange={(event)=>{ctx.actions.onChangenamep(event.target.value)}} 
-                  value={ctx.state.name2}
-                  placeholder=""  
-                  type="text"/>
+        
+     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <input type="submit" />
+      </form>
 
-
-                                                    </div>
-                                                    <div className="tickets">
-                                                        <div className="persons">
-                                                            <label>age :</label>
-                                                            <Textinput 
-                  onChange={(event)=>{ctx.actions.onChangeage(event.target.value)}} 
-                  value={ctx.state.age}
-                  placeholder=""  
-                  type="text"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="book-pag agileits w3layouts">
-                                                        <div class="book-pag-frm1 agileits w3layouts">
-
-
-                                                            <label>draugs :</label>
-                                                            <Input />
-                                                        </div>
-
-                                                        <div class="clear">
-
-
-                                                        </div>
-
-
-
-
-                                                        <div class="book-pag agileits w3layouts">
-
-
-
-
-
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div className="tickets">
-                                                            <div className="ferry ferry-from">
-
-
-                                                                <label>Address :</label>
-                                                                <select name="from" onChange={ctx.actions.sorting}>
-                                                                
-                                                                    <option value=""></option>
-                                                                    <option value="almansour">almansour</option>
-                                                                    <option value="alsedia">alsedia</option>
-                                                                    <option value="hafa street"> hafa street</option>
-                                                                    <option value="alharthea">alharthea</option>
-                                                                    <option value="almamoon">almamoon</option>
-                                                                    <option value="alkrada">alkrada</option>
-                                                                    <option value="albea">albea</option>
-                                                                    <option value="aldora">aldora</option>
-                                                                </select>
-                                                            </div>
-
-
-
-                                                         
-
-
-                                                            <div class="clear"></div>
-                                                        </div>
-                                                        <div class="ferry ferry-from m">
-                                                            <label>Notes :</label>
-                                                            <textarea id="message" name="message" placeholder="" onChange={(event)=>{ctx.actions.onChangenote(event.target.value)}}  ></textarea>
-                                                        </div>
-                                                        <div class="wthreesubmitaits">
-                                                            <a  class="btn btn-skin btn-lg " id="mb"  onClick={()=>{
-                                                                alert("done!")
-
-firebase.firestore().collection('prescription').add({
-  named: ctx.state.name1,
- namep: ctx.state.name2,
- age:ctx.state.age,
- adress:ctx.state.adress,
- drag:ctx.state.drug,
- notes:ctx.state.notes,
-  date: Date.now()
-})
-                                                             }} >Save  </a>
-                                                        </div></div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -161,7 +90,7 @@ firebase.firestore().collection('prescription').add({
     }
 }
 
-function Input() {
+/*function Input() {
 
 
     return <div>
@@ -206,7 +135,7 @@ function Input() {
     </div>
 }
 
-
+*/
 export class App extends Component {
     constructor() {
 
@@ -214,68 +143,16 @@ export class App extends Component {
 
 
         this.state = {
-            drug: [{}],
-            listdrugs: [],
+          
+           
             name1: '',
             name2: '',
             sd: [],
             adress:"",
             notes:"",
-            age: 0
+            age: 0,
+            drg:[{}]
         }
-
-
-
-        firebase.firestore().collection('prescription').onSnapshot((snapshot)=>{
-         
-             
-
-      snapshot.forEach((doc)=>{
-        pre.push(doc.data())
-        this.setState({
-          drug: pre
-
-                }
-                )
-      
-            })
-
-        })
-
-
-
-
-
-
-
-        fetch(`https://api.fda.gov/drug/label.json?count=openfda.brand_name.exact&limit=1000`)
-            .then((response) => {
-                window.res = response;
-                console.log('resp :', response)
-                return response.json()
-            })
-            .then((data) => {
-                window.dat = data;
-                console.log('data :', data.results)
-                let redm = data.results
-                redm.forEach(element => {
-                    let v = this.state.drug
-                    v.push(element.term)
-
-
-
-                });
-
-                let stringArray = this.state.drug.splice('\n')
-                this.setState({
-                    drug: stringArray
-
-                })
-                window.s = this.state.drug;
-                console.log('stringArraylen', stringArray.length)
-                console.log('stringArray', stringArray)
-
-            });
 
     }
 
@@ -287,17 +164,7 @@ export class App extends Component {
                 state: this.state,
 
                 actions: {
-                    addprescribtion: () => {
-
-                        firebase.firestore().collection('prescription').add({
-                            age: 0,
-                            drugs: [{}, {}],
-                            named: "",
-                            namep: "",
-                            adress:"",
-                            notes:"",
-                            date: Date.now()
-                        })
+                   
 
                     },
                     onChangenote: (value) => {
@@ -323,7 +190,7 @@ export class App extends Component {
                     changedItm: (value) => {
                         console.log("value value",value)
                         this.setState({
-                            drug: value
+                            drg: value
                         })
                     },
                     sorting:(e)=>{
@@ -341,7 +208,7 @@ export class App extends Component {
 
 
 
-                }
+            
             }}>
 
                 <React.Fragment>

@@ -9,8 +9,25 @@
 /* ==== Google font ==== */
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,700,800|Roboto:400,500,700,900');
 /* --- pe-icon-7-stroke --- */
+.ind{
 
 
+	z-index: 20000;
+}
+.tty{
+z-index: 800000;
+	
+}
+
+.ii{
+margin-right: 2%;
+margin-left: 26%;
+
+}
+.form-control{
+padding-top: 9%;
+	padding-bottom: 9%;
+}
 body {
     width: 100%;
     height: 100%;
@@ -720,14 +737,22 @@ hr.bold {
 /* ===========================
 --- Intro
 ============================ */
+.text{
+color:#fff;
 
+
+}
+#mar{
+
+	margin-right: 32%;
+}
 .intro {
 	width:100%;
 	position:relative;
 }
 
 .intro-content {
-	background: url('./img/dummy/bg1.jpg') no-repeat top center;
+	background: url('./images/slide-01-1920x810.jpg') no-repeat top center;
 	padding:200px 0 60px;
 }
 .intro-content.intro-nobg {
@@ -1077,7 +1102,7 @@ Testimonial
 =========================== */
 
 #testimonial {
-	background-image: url('./img/parallax/1.jpg');
+	background-image: url('./images/mt-0841-slier-img1.jpg');
 }
 
 .carousel-control.left,.carousel-control.right  {background:none;width:25px; z-index: 999;}
